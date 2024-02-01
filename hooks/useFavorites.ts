@@ -9,6 +9,6 @@ const useFavorites = () => {
   });
 
   return { data, error, isLoading, mutate };
-}
+};
 
 export default useFavorites;

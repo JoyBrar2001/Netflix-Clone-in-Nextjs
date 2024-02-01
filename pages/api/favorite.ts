@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     if (req.method === 'POST') {
       const { currentUser } = await serverAuth(req);
-
+      console.log( currentUser )
       const { movieId } = req.body;
 
       const existingMovie = await prismadb.movie.findUnique({
@@ -51,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       const updatedFavoriteIds = without(currentUser.favoriteIds, movieId);
-
+      console.log(updatedFavoriteIds);
       const updatedUser = await prismadb.user.update({
         where: {
           email: currentUser.email || '',
