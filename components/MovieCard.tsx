@@ -14,7 +14,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
   const { openModal } = useInfoModal();
   
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className='group bg-zinc-900 col-span relative h-[12vw]'>

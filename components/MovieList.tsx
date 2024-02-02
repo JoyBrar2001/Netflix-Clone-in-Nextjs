@@ -13,7 +13,7 @@ const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
     return null;
   }
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className='px-4 md:px-12 pt-4 space-y-8'>
