@@ -8,14 +8,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     if (req.method === 'POST') {
       const { currentUser } = await serverAuth(req);
-      console.log( currentUser )
+      console.log( currentUser );
       const { movieId } = req.body;
+      console.log('Request Body: ', req.body);
 
       const existingMovie = await prismadb.movie.findUnique({
         where: {
           id: movieId,
         }
       });
+
+      console.log(existingMovie);
 
       if(!existingMovie){
         throw new Error('Invalid ID');
@@ -32,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       });
 
-      return res.status(200).json(user);
+      res.status(200).json(user);
     }
 
     if(req.method === 'DELETE'){
@@ -61,12 +64,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       });      
 
-      return res.status(200).json(updatedUser);
+      res.status(200).json(updatedUser);
     }
 
-    return res.status(405).end();
+    res.status(405).end();
   } catch (err) {
     console.log(err);
-    return res.status(400).end();
+    res.status(400).end();
   }
 }
